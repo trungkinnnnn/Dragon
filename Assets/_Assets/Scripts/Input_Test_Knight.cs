@@ -154,7 +154,7 @@ public class Input_Test_Knight : MonoBehaviour
     {
         float moveInput = 0f;
         Vector3 scale = transform.localScale;
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             moveInput = -1f;
             scale.x = -Mathf.Abs(scale.x);
@@ -170,7 +170,7 @@ public class Input_Test_Knight : MonoBehaviour
             animator.SetBool("isWalk", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             moveInput = 1f;
             scale.x = Mathf.Abs(scale.x);
