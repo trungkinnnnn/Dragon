@@ -23,12 +23,10 @@ public class Input_Test_Knight : MonoBehaviour
     [SerializeField] Transform pointCheck;
     public LayerMask LayerMaskGround;
 
-    private SpriteRenderer sprite;
     private Rigidbody2D rb;
     private Animator animator;
     public void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
@@ -90,10 +88,11 @@ public class Input_Test_Knight : MonoBehaviour
     private void HandleStrikeInput()
     {
 
-        if(Input.GetKey(KeyCode.H))
+        if(Input.GetKeyDown(KeyCode.H))
         {
-            rb.velocity = new Vector2(rb.velocity.x, speedUp);
             animator.SetTrigger("isStrike");
+            Vector2 dircetion = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+            rb.AddForce(dircetion * addForceDash, ForceMode2D.Force);
         }
     }
     private void HandleAttackInput()
@@ -145,10 +144,11 @@ public class Input_Test_Knight : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             animator.SetTrigger("isDash");
-            Vector2 direction = sprite.flipX ? Vector2.left : Vector2.right;
+            Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             rb.AddForce(direction * addForceDash, ForceMode2D.Impulse);
         }
     }
+
 
     private void HandleMovementInput()
     {

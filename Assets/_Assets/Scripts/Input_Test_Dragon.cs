@@ -29,12 +29,10 @@ public class Input_Test_Dragon : MonoBehaviour
     [SerializeField] Transform pointFire;
     [SerializeField] GameObject fireBall;
 
-    private SpriteRenderer sprite;
     private Rigidbody2D rb;
     private Animator animator;
     public void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
@@ -139,7 +137,7 @@ public class Input_Test_Dragon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             animator.SetTrigger("isFlyKick");
-            Vector2 direction = sprite.flipX ? Vector2.left : Vector2.right;
+            Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             rb.AddForce(direction * addForceFlyKick, ForceMode2D.Impulse);
         }
     }
