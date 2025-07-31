@@ -1,8 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Input_Test : MonoBehaviour
+public class Input_Test_Dragon : MonoBehaviour
 {
    
     public float speedWalk = 4f;
@@ -25,6 +25,9 @@ public class Input_Test : MonoBehaviour
     [SerializeField] Transform pointCheck;
     public LayerMask LayerMaskGround;
 
+    // fireBall
+    [SerializeField] Transform pointFire;
+    [SerializeField] GameObject fireBall;
 
     private SpriteRenderer sprite;
     private Rigidbody2D rb;
@@ -64,7 +67,7 @@ public class Input_Test : MonoBehaviour
     {
         if (!isGround && rb.velocity.y < 0)
         {
-           if(!isFalling)
+            if (!isFalling)
             {
                 animator.SetTrigger("isJump");
                 isFalling = true;
@@ -89,6 +92,7 @@ public class Input_Test : MonoBehaviour
             if (!isGround && Input.GetKeyDown(KeyCode.J))
             {
                 animator.SetBool("isAttack_bool", true);
+                Fire();
             }
         }
     }
@@ -114,6 +118,7 @@ public class Input_Test : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, speedUp);
             isStrike = true;
             animator.SetBool("isStrike", true);
+            animator.Play("strike");
         }
 
         if (Input.GetKeyUp(KeyCode.W))
@@ -147,6 +152,7 @@ public class Input_Test : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.J))
             {
                 animator.SetTrigger("isAttack_trigger");
+                Fire();
             }
         }
     }
@@ -170,27 +176,41 @@ public class Input_Test : MonoBehaviour
         if (isCrouch && Input.GetKeyDown(KeyCode.J))
         {
             animator.SetBool("isAttack_bool", true);
+            Fire();
         }
     }
     private void HandleMovementInput()
     {
         float moveInput = 0f;
+        Vector3 scale = transform.localScale;
         if (Input.GetKey(KeyCode.A))
         {
             moveInput = -1f;
-            sprite.flipX = true;
+            scale.x = -Mathf.Abs(scale.x);
+            transform.localScale = scale;
+
             rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             moveInput = 1f;
-            sprite.flipX = false;
+            scale.x = Mathf.Abs(scale.x);
+            transform.localScale= scale;
+
             rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
         }
 
         
         animator.SetFloat("speed", Mathf.Abs(moveInput));
     }
+
+
+    private void Fire()
+    {
+        GameObject Ball = Instantiate(fireBall, pointFire.position, Quaternion.identity);
+        Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+        Ball.GetComponent<FireBall>().SetDirection(direction);
+    }    
 
 }
