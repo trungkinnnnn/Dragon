@@ -122,6 +122,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &190836471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 190836472}
+  m_Layer: 0
+  m_Name: PointFire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &190836472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190836471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.95, y: -1.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 454399275}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &199480165
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199480165}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.18907735, y: -0.27, z: -10}
+  m_LocalPosition: {x: 4.33, y: -0.27, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -310,9 +341,9 @@ GameObject:
   - component: {fileID: 454399275}
   - component: {fileID: 454399274}
   - component: {fileID: 454399273}
-  - component: {fileID: 454399277}
   - component: {fileID: 454399279}
   - component: {fileID: 454399278}
+  - component: {fileID: 454399280}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -401,42 +432,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454399272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.18907735, y: -0.27, z: 0}
+  m_LocalPosition: {x: 4.33, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2092126363}
   - {fileID: 414876504}
+  - {fileID: 190836472}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &454399277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454399272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 265844f7d54f45e42bd43da732386bf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedWalk: 4
-  speedCrouch: 2
-  speedUp: 1
-  speed: 0
-  isCrouch: 0
-  isStandup: 0
-  jumForce: 10
-  addForceDash: 10
-  isGround: 0
-  isFalling: 0
-  isJump: 0
-  pointCheck: {fileID: 2092126363}
-  LayerMaskGround:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!50 &454399278
 Rigidbody2D:
   serializedVersion: 4
@@ -457,7 +462,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &454399279
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -484,6 +489,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4021747, y: 2.372894}
   m_EdgeRadius: 0
+--- !u!114 &454399280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454399272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 612fc1c9501335c439172dfda75829bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedWalk: 4
+  speedCrouch: 2
+  speed: 0
+  isCrouch: 0
+  jumForce: 10
+  addForceDash: 10
+  isGround: 0
+  isJump: 0
+  pointCheck: {fileID: 2092126363}
+  LayerMaskGround:
+    serializedVersion: 2
+    m_Bits: 8
+  checkGroundRaidus: 0.2
+  pointFire: {fileID: 190836472}
+  fireBall: {fileID: 620061445927792532, guid: 97b5bcc5b4d573f4eab0cab49f47e319, type: 3}
+  inputMoveLeft: 97
+  inputMoveRight: 100
+  inputCround: 115
+  inputJump: 32
+  inputAttackMelee: 106
+  inputAttackRange: 107
+  inputDash: 110
+  inputStrike: 104
+  inputHurt: 105
+  inputUp: 117
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.18907735, y: -0.27, z: -10}
+  m_LocalPosition: {x: 4.33, y: -0.27, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -709,16 +751,16 @@ GameObject:
   - component: {fileID: 1333585951}
   - component: {fileID: 1333585950}
   - component: {fileID: 1333585952}
-  - component: {fileID: 1333585953}
   - component: {fileID: 1333585955}
   - component: {fileID: 1333585954}
+  - component: {fileID: 1333585956}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1333585950
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -786,7 +828,7 @@ Transform:
   - {fileID: 1617364100}
   - {fileID: 1446982088}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1333585952
 Animator:
@@ -809,33 +851,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1333585953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333585949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 265844f7d54f45e42bd43da732386bf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedWalk: 4
-  speedCrouch: 2
-  speedUp: 3
-  speed: 0
-  isCrouch: 0
-  isStandup: 0
-  jumForce: 10
-  addForceDash: 5
-  isGround: 0
-  isFalling: 0
-  isJump: 0
-  pointCheck: {fileID: 1446982088}
-  LayerMaskGround:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!50 &1333585954
 Rigidbody2D:
   serializedVersion: 4
@@ -849,9 +864,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -883,6 +898,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7321267, y: 1.9935367}
   m_EdgeRadius: 0
+--- !u!114 &1333585956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333585949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 612fc1c9501335c439172dfda75829bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedWalk: 4
+  speedCrouch: 2
+  speed: 0
+  isCrouch: 0
+  jumForce: 10
+  addForceDash: 10
+  isGround: 0
+  isJump: 0
+  pointCheck: {fileID: 1446982088}
+  LayerMaskGround:
+    serializedVersion: 2
+    m_Bits: 8
+  checkGroundRaidus: 0.2
+  pointFire: {fileID: 1617364100}
+  fireBall: {fileID: 1593109354671819603, guid: 7f9f602ba08652f49b4ddb6fa58bb766, type: 3}
+  inputMoveLeft: 97
+  inputMoveRight: 100
+  inputCround: 115
+  inputJump: 32
+  inputAttackMelee: 106
+  inputAttackRange: 107
+  inputDash: 110
+  inputStrike: 104
+  inputHurt: 105
+  inputUp: 117
 --- !u!1 &1446982087
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,7 +959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446982087}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -2.08, z: 0}
+  m_LocalPosition: {x: 0.05, y: -1.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1054,7 +1106,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2092126362
 GameObject:
@@ -1080,7 +1132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092126362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.01, z: 0}
+  m_LocalPosition: {x: 0, y: -1.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
