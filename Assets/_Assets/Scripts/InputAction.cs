@@ -26,8 +26,8 @@ public class InputAction : MonoBehaviour
     [SerializeField] Transform pointFire;
     [SerializeField] GameObject fireBall;
 
-    private Rigidbody2D rb;
-    private Animator animator;
+    protected Rigidbody2D rb;
+    protected Animator animator;
 
     private const string NAME_ANI_WALK = "isWalk";
     private const string NAME_ANI_CROUCH = "isCrouch";
@@ -61,7 +61,7 @@ public class InputAction : MonoBehaviour
         speed = speedWalk;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         HandleMovement();
         HandleCrounch();
@@ -156,7 +156,7 @@ public class InputAction : MonoBehaviour
 
     private void HandleAttackMelee()
     {
-        if(Input.GetKeyDown(inputAttackMelee) && isGround)
+        if(Input.GetKeyDown(inputAttackMelee) && isGround && !isCrouch)
         {
             animator.SetTrigger(NAME_ANI_ATTACKMELEE);
         }
@@ -207,7 +207,7 @@ public class InputAction : MonoBehaviour
         }
     }
 
-    private void Fire()
+    protected void Fire()
     {
         GameObject Ball = Instantiate(fireBall, pointFire.position, Quaternion.identity);
         Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;

@@ -907,7 +907,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1333585949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 612fc1c9501335c439172dfda75829bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 480eaff720e8e254186ed25ca5924e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speedWalk: 4
@@ -915,7 +915,7 @@ MonoBehaviour:
   speed: 0
   isCrouch: 0
   jumForce: 10
-  addForceDash: 10
+  addForceDash: 5
   isGround: 0
   isJump: 0
   pointCheck: {fileID: 1446982088}
@@ -935,6 +935,7 @@ MonoBehaviour:
   inputStrike: 104
   inputHurt: 105
   inputUp: 117
+  inputCrouchAttack: 106
 --- !u!1 &1446982087
 GameObject:
   m_ObjectHideFlags: 0
